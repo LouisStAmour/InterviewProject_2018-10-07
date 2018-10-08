@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.9'
@@ -45,3 +47,5 @@ group :development do
   gem 'spring'
 end
 
+gem "attr_encrypted", "~> 3.0.0"
+gem "aes"
