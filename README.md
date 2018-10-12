@@ -1,3 +1,11 @@
+# Now with docker!
+
+* Install Docker for Mac.
+* Run `docker-compose up`
+* Run other commands using `bin/forward`, for example `bin/forward bin/rake db:setup` or `bin/forward bin/rake --tasks`
+* See also: https://medium.com/@TomKeur/how-get-better-disk-performance-in-docker-for-mac-2ba1244b5b70
+* And to have RubyMine use Docker Compose: https://www.jetbrains.com/help/ruby/using-docker-compose-as-a-remote-interpreter.html
+
 # Interview Assignment
 
 For your take home assignment, you'll be extending an encrypted data store for strings. Clients post string that they want stored encrypted to the `encrypted_strings` path and receive a token that they can use to later retrieve the string. Clients may also delete a previously decrypted string using their token. 

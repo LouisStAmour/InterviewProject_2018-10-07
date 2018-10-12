@@ -1,0 +1,24 @@
+version: '3.2'
+volumes:
+  postgres-data:
+services:
+  db:
+    image: postgres
+    container_name: db
+    volumes:
+    - postgres-data:/var/lib/postgresql/data:delegated
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: ./docker/app-dockerfile
+    command: bin/rails server
+    volumes:
+    - .:/app:cached
+    working_dir: /app
+    ports:
+    - "3000:3000"
+    depends_on:
+    - db
+    stdin_open: true
+    tty: true

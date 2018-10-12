@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
+ruby '2.5.1'
 gem 'dotenv-rails', groups: [:development, :test]
 
 
@@ -50,7 +50,7 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Windows & alpine does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data'
 gem "attr_encrypted", "~> 3.0.0"
 gem "aes"
