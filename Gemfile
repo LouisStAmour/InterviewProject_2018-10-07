@@ -52,5 +52,5 @@ end
 
 # Windows & alpine does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
-gem "attr_encrypted", "~> 3.0.0"
-gem "aes"
+gem 'attr_encrypted', github: 'attr-encrypted/attr_encrypted'
+gem 'aes'
