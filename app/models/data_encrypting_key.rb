@@ -18,7 +18,7 @@ class DataEncryptingKey < ActiveRecord::Base
   end
 
   def self.primary
-    find_by(primary: true)
+    find_by(primary: true) || generate!(primary: true)
   end
 
   def self.generate!(attrs={})

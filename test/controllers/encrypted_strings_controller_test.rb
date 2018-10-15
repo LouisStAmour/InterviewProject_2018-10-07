@@ -2,10 +2,6 @@ require 'test_helper'
 
 class EncryptedStringsControllerTest < ActionController::TestCase
 
-  def setup
-    @data_encrypting_key = DataEncryptingKey.generate!(primary: true)
-  end
-
   test "POST #create saves new EncryptedString" do
     value_to_encrypt = "to encrypt"
     assert_difference "EncryptedString.count" do
