@@ -5,6 +5,7 @@ class DataEncryptingKeyTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+  # Requirement: Generate a new Data Encrypting Key
   test ".generate!" do
     assert_difference "DataEncryptingKey.count" do
       key = DataEncryptingKey.generate!
@@ -20,6 +21,7 @@ class DataEncryptingKeyTest < ActiveSupport::TestCase
     assert_equal('Validation failed: Primary must be false if another primary already exists', exception.message)
   end
 
+  # Requirement: Set the new key to be the primary one (primary: true), while making any old primary key(s) non-primary (primary: false)
   test "can set another key as primary" do
     nonprimary = DataEncryptingKey.generate!(primary: false)
     primary = DataEncryptingKey.generate!(primary: true)
@@ -30,4 +32,8 @@ class DataEncryptingKeyTest < ActiveSupport::TestCase
     assert_equal false, primary.primary, "previous primary key should have primary = false"
     assert_equal true, nonprimary.primary, "new primary key should have primary = true"
   end
+
+  # Requirement: Transactionally, write-locked? re-encrypt all strings with a key and delete other keys
+  # Alternatively, set the new key to default, then re-encrypt all other strings with the new key
+  # Another thought -- every time generate! is called, we could re-encrypt existing keys?
 end
