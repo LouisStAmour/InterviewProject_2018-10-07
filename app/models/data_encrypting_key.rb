@@ -33,9 +33,7 @@ class DataEncryptingKey < ActiveRecord::Base
     transaction do
       # Uses a non-access lock, so the table can still be read, just not written to during this transaction.
       ActiveRecord::Base.connection.execute("LOCK #{self.class.table_name} IN EXCLUSIVE MODE")
-      p = self.class.primary
-      p.primary = false
-      p.save!
+      self.class.where(primary: true).update_all(primary: false)
       self.primary = true
       self.save!
     end
