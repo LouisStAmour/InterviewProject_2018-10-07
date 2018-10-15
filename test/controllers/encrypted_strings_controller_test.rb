@@ -7,14 +7,19 @@ class EncryptedStringsControllerTest < ActionController::TestCase
   end
 
   test "POST #create saves new EncryptedString" do
+    value_to_encrypt = "to encrypt"
     assert_difference "EncryptedString.count" do
-      post :create, params: {encrypted_string: { value: "to encrypt"}}
+      post :create, params: {encrypted_string: { value: value_to_encrypt }}
     end
 
     assert_response :success
 
     json = JSON.parse(response.body)
     assert json["token"]
+    encrypted_string = EncryptedString.find_by(token: json["token"])
+    assert encrypted_string
+    refute_equal encrypted_string.encrypted_value, value_to_encrypt
+    assert_equal encrypted_string.value, value_to_encrypt
   end
 
   test "POST #create returns invalud when value does not exist" do
@@ -36,6 +41,25 @@ class EncryptedStringsControllerTest < ActionController::TestCase
 
     json = JSON.parse(response.body)
     assert_equal "decrypted string", json["value"]
+  end
+
+  test "round-trip: POST a new token, then GET it" do
+    value_to_encrypt = "round-trip encrypt"
+    assert_difference "EncryptedString.count" do
+      post :create, params: {encrypted_string: { value: value_to_encrypt}}
+    end
+
+    assert_response :success
+
+    json = JSON.parse(response.body)
+    assert json["token"]
+
+    get :show, params: {token: json["token"]}
+
+    assert_response :success
+
+    json = JSON.parse(response.body)
+    assert_equal value_to_encrypt, json["value"]
   end
 
   test "get #show returns 404 for invalid token" do
