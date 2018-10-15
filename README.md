@@ -1,7 +1,14 @@
-# Now with docker!
+# Incomplete
+* missing `/rotate`, Sidekiq; 
+* partial key rotation logic in DataEncryptingKeys, see tests
 
+# Changelog
+* See commit history. Primarily: upgraded to Rails 5.2 and improved tests, fixed a bug or two, added table locking and validations.
+
+# Now with Docker to make getting started easy!
 * Install Docker for Mac.
 * All commands in the `bin/` folder will automatically start `docker-compose` and run themselves inside docker.
+* Try runnning `bin/rake db:setup` to setup the databases required, then `bin/rails t` to run tests.
 * Non-standard commands can be forwarded using `bin/forward`, such as `bin/forward ruby -v` will return the ruby version in Docker.
 * If you already had Docker for Mac installed in 2016-17 timeframe, for best performance have a look at: https://medium.com/@TomKeur/how-get-better-disk-performance-in-docker-for-mac-2ba1244b5b70
 
