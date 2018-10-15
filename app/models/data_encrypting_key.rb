@@ -1,5 +1,7 @@
 class DataEncryptingKey < ActiveRecord::Base
 
+  has_many :encrypted_strings
+
   attr_encrypted :key,
                  key: :key_encrypting_key,
                  encode: true, encode_iv: true
