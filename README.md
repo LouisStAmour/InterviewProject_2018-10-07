@@ -1,10 +1,9 @@
 # Now with docker!
 
 * Install Docker for Mac.
-* Run `docker-compose up`
-* Run other commands using `bin/forward`, for example `bin/forward bin/rake db:setup` or `bin/forward bin/rake --tasks`
-* See also: https://medium.com/@TomKeur/how-get-better-disk-performance-in-docker-for-mac-2ba1244b5b70
-* And to have RubyMine use Docker Compose: https://www.jetbrains.com/help/ruby/using-docker-compose-as-a-remote-interpreter.html
+* All commands in the `bin/` folder will automatically start `docker-compose` and run themselves inside docker.
+* Non-standard commands can be forwarded using `bin/forward`, such as `bin/forward ruby -v` will return the ruby version in Docker.
+* If you already had Docker for Mac installed in 2016-17 timeframe, for best performance have a look at: https://medium.com/@TomKeur/how-get-better-disk-performance-in-docker-for-mac-2ba1244b5b70
 
 # Interview Assignment
 
