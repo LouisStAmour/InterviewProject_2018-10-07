@@ -1,9 +1,15 @@
 #!/usr/bin/env ruby
-begin
-  load File.expand_path('../spring', __FILE__)
-rescue LoadError => e
-  raise unless e.message.include?('spring')
+new_path = "stubs/#{__FILE__.split('/')[-1]}"
+if __FILE__ == $0
+  system *%[docker-compose up -d]
+  exec *%w[docker-compose exec app], File.join(File.dirname(__FILE__), new_path), *$*
+else
+  begin
+    load File.expand_path('../spring', __FILE__)
+  rescue LoadError => e
+    raise unless e.message.include?('spring')
+  end
+  require_relative '../config/boot'
+  require 'rake'
+  Rake.application.run
 end
-require_relative '../config/boot'
-require 'rake'
-Rake.application.run
