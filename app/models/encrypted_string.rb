@@ -15,7 +15,7 @@ class EncryptedString < ActiveRecord::Base
   private
 
   def encryption_key
-    self.data_encrypting_key ||= DataEncryptingKey.primary
+    set_data_encrypting_key
     data_encrypting_key.key
   end
 
