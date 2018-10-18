@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-new_path = "stubs/#{__FILE__.split('/')[-1]}"
+new_path = "../stubs/#{__FILE__.split('/')[-1]}"
 if __FILE__ == $0
   system *%[docker-compose up -d]
   exec *%w[docker-compose exec app], File.join(File.dirname(__FILE__), new_path), *$*
