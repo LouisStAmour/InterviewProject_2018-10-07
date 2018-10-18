@@ -28,7 +28,7 @@ class DataEncryptingKey < ActiveRecord::Base
   end
 
   def key_encrypting_key
-    ENV['KEY_ENCRYPTING_KEY']
+    Rails.application.credentials[:key_encrypting_key]
   end
 
   def make_primary!

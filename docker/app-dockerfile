@@ -4,4 +4,4 @@ RUN apk update && apk add --virtual build-deps build-base gcc wget git postgresq
 COPY Gemfile Gemfile.lock /app/
 WORKDIR /app
 RUN bundle install
-RUN apk del build-deps && apk update && apk add libpq
+RUN apk del build-deps && apk update && apk add libpq nano
