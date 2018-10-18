@@ -1,6 +1,5 @@
 # Incomplete
-* missing `/rotate`, Sidekiq; 
-* partial key rotation logic in DataEncryptingKeys, see tests
+* missing tests, `/rotate` JSON response, and deleting old keys
 
 # Changelog
 * See commit history. Primarily: upgraded to Rails 5.2 and improved tests, fixed a bug or two, added table locking and validations.
